@@ -75,50 +75,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand-md navbar-dark navbar-dark">
             <div class="container">
-                <a href="<?php echo site_url() ?>" class="navbar-brand">
-                    <img src="<?php echo base_url() ?>assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                    <span class="brand-text font-weight-light">Guitar Store</span>
+                <a href="<?php echo site_url('dss') ?>" class="navbar-brand">
+                    <span class="brand-text font-weight-light"><b> Guitar Store </b> <small style="font-size: 9px">Client Decision Support System</small></span>
+
                 </a>
 
                 <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-                    <!-- Left navbar links -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="<?php echo site_url() ?>" class="nav-link <?php echo (isset($menu) and $menu === "dashboard") ? "active" : "" ?>">
-                                Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo site_url('Alternative') ?>" class="nav-link <?php echo (isset($menu) and $menu === "alternative") ? "active" : "" ?>">
-                                Alternative
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo site_url('Criteria') ?>" class="nav-link <?php echo (isset($menu) and $menu === "criteria") ? "active" : "" ?>">
-                                Criteria
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?php echo site_url('Selection') ?>" class="nav-link <?php echo (isset($menu) and $menu === "selection") ? "active" : "" ?>">
-                                Pencocokan
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Right navbar links -->
-                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                    <!-- Messages Dropdown Menu -->
-                    <li class="nav-item">
-                        <a href="<?php echo site_url('Login/logout') ?>" class="nav-link">
-                            Logout
-                        </a>
-                    </li>
-                </ul>
             </div>
         </nav>
         <!-- /.navbar -->
@@ -130,7 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark"> <?php echo $page ?> <small>Page</small></h1>
+                            <h1 class="m-0 text-dark"> Support <small>Page</small></h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -149,17 +113,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <!-- /.content-wrapper -->
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-            <div class="p-3">
-                <h5>Title</h5>
-                <p>Sidebar content</p>
-            </div>
-        </aside>
         <!-- /.control-sidebar -->
 
-        <!-- Main Footer -->
         <footer class="main-footer">
             <!-- To the right -->
             <div class="float-right d-none d-sm-inline">
@@ -222,18 +177,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <!-- /.modal -->
-    <!-- ./wrapper -->
 
-    <!-- REQUIRED SCRIPTS -->
-
-    <!-- jQuery -->
-    <!-- <script src="<?php echo base_url() ?>assets/plugins/jquery/jquery.min.js"></script> -->
-    <!-- Bootstrap 4 -->
-    <!-- <script src="<?php echo base_url() ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-    <!-- AdminLTE App -->
-    <!-- <script src="<?php echo base_url() ?>assets/js/adminlte.min.js"></script> -->
-    <script src="<?php echo base_url() ?>assets/js/pages/<?php echo $menu ?>.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/pages/<?php echo $page ?>.js"></script>
+    
     <?php if ($this->session->flashdata('action') !== NULL) : ?>
         <script type="text/javascript">
             let messages = "<?php echo $this->session->flashdata('message') ?>";

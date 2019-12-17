@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Selection extends CI_Controller {
 
-    private $data = ["menu" => "selection", "page" => "Selection"];
+    private $data = ["menu" => "selection", "page" => "Pencocokan"];
     private $response = ["status" => TRUE];
     public $uri;
     
