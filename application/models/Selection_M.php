@@ -142,7 +142,16 @@ class Selection_M extends CI_Model {
                     
                     $value = NULL;
                     $result = NULL;
-                    $this->db->select('*');
+                    $max_or_min = "";
+                    if ($crt->jenis === "Benefit") {
+                        $max_or_min = 'SELECT MAX(nilai)';
+                    }else{
+                        $max_or_min = 'SELECT MIN(nilai)';
+                    }
+                    $max_or_min .= "AS min_or_max FROM dt_pencocokan WHERE id_kriteria = " . $crt->id;
+                    $max_or_min = $this->db->query($max_or_min)->result()[0]->min_or_max;
+                    
+                    $this->db->select('*, ' . $max_or_min);
                     $this->db->from('dt_pencocokan');
                     $this->db->join('criteria', 'dt_pencocokan.id_kriteria = criteria.id');
                     $this->db->where([
@@ -171,9 +180,11 @@ class Selection_M extends CI_Model {
                         $data_hitung[$i]['pencocokan'][]= [
                             "nama_criteria" => $idx, 
                             'criteria' => $value,
+                            'jenis' => $crt->jenis,
                             "bobot" => $crt->bobot, 
-                            "nilai" => $result[0]->nilai
-                            ] ;
+                            "nilai" => $result[0]->nilai,
+                            "min_or_max" => $max_or_min,
+                            ];
                     }else{
                         $data[$i][$idx] = "NULL";
                         $data_hitung[$i][$idx] = "NULL"; 
