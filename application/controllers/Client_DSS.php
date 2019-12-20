@@ -46,8 +46,7 @@ class Client_DSS extends CI_Controller {
             $i = 0;
             foreach ($data_alt as $key => $value) {
                 $normalisasi[$i] = [
-                    $value['alternative']['stock'],
-                    $value['alternative']['jenis_gitar'],
+                    $value['alternative']['merk'],
                 ];
                 //persiapan preferensi
                 $nilai_preferensi = 0;

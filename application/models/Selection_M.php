@@ -117,8 +117,7 @@ class Selection_M extends CI_Model {
         $data_hitung = [];
         $header_check = "";
 
-        $header[] = "Stock";
-        $header[] = "Jenis Gitar";
+        $header[] = "Merk";
        
         if (sizeof($alternative) > 0) {
 
@@ -127,13 +126,12 @@ class Selection_M extends CI_Model {
             foreach ($alternative as $key_alt => $alt) {
 
                 $data[$i] = [
-                    "stock" => $alt->stock, 
-                    "jenis_gitar" => $alt->jenis_guitar
+                    "merk" => $alt->merk,
                 ];
 
                 $data_hitung[$i] = [
                     "alternative" => [
-                        "id_alt" => $alt->id_alt, "id_pck" => $alt->id_pencocokan ,"stock" => $alt->stock, "jenis_gitar" => $alt->jenis_guitar
+                        "id_alt" => $alt->id_alt, "id_pck" => $alt->id_pencocokan ,"merk" => $alt->merk
                     ],
                      $alt->id_alt,
                 ];

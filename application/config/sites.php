@@ -1,6 +1,6 @@
 <?php
 //config for site
-$config['site'] = "Guitar Store"
+$config['site'] = "Sunyotok Guitar Store"
 
 
 ?>

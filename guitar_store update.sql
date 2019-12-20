@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2019 at 04:01 PM
+-- Generation Time: Dec 20, 2019 at 10:59 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -42,7 +42,10 @@ CREATE TABLE `alternative` (
 
 INSERT INTO `alternative` (`id`, `merk`, `jenis_guitar`, `harga`, `stock`) VALUES
 (20191202135025, 'Fender', 'Stratocaster', 20000000, 45),
-(20191202145108, 'Gibson', 'Less Paul', 30000000, 5);
+(20191202145108, 'Gibson', 'Less Paul', 4000000, 5),
+(20191216185455, 'Ibanez', 'Wow', 8900000, 90),
+(20191216185534, 'Pocophone', 'itu lah', 700000, 9),
+(20191216185706, 'Yamaha', 'RX King', 20000000, 90);
 
 -- --------------------------------------------------------
 
@@ -64,9 +67,11 @@ CREATE TABLE `criteria` (
 --
 
 INSERT INTO `criteria` (`id`, `criteria`, `bobot`, `jenis`, `keterangan`, `isian`) VALUES
-(23, 'Jenis Kayu', 5, 'Benefit', 'Jenis kayu yang digunakan ', 11),
-(24, 'Harga', 4, 'Benefit', 'Harga gitar', 1),
-(25, 'Merk Guitar', 3, 'Benefit', 'Merk dari gitar', 13);
+(1, 'Harga', 3, 'Cost', 'Harga gitar', 1),
+(2, 'Bahan Kayu', 4, 'Benefit', 'Jenis kayu yang digunakan ', 11),
+(3, 'Bridge', 2, 'Benefit', 'Bridge yang digunakan pada gitar', 15),
+(4, 'Pick up', 4, 'Benefit', 'Picku-up yang digunakan ', 14),
+(5, 'Switch Pick Up', 1, 'Benefit', 'Switch Pick up yang digunakan', 16);
 
 -- --------------------------------------------------------
 
@@ -85,12 +90,31 @@ CREATE TABLE `dt_pencocokan` (
 --
 
 INSERT INTO `dt_pencocokan` (`id_pencocokan`, `id_kriteria`, `nilai`) VALUES
-(2122019145108, 23, 2),
-(2122019145108, 25, 5),
-(2122019145108, 24, 30000000),
-(2122019153203, 23, 5),
-(2122019153203, 25, 4),
-(2122019153203, 24, 20000000);
+(16122019185133, 2, 1),
+(16122019185133, 1, 200000000),
+(16122019185534, 2, 1),
+(16122019185534, 1, 7000000),
+(16122019185706, 2, 3),
+(16122019185706, 1, 20000000),
+(16122019185754, 2, 5),
+(16122019185754, 1, 8900000),
+(20122019221047, 2, 2),
+(20122019221047, 3, 1),
+(20122019221047, 4, 2),
+(20122019221047, 5, 1),
+(20122019221047, 1, 4000000),
+(16122019185133, 3, 1),
+(16122019185133, 4, 5),
+(16122019185133, 5, 1),
+(16122019185754, 3, 5),
+(16122019185754, 4, 5),
+(16122019185754, 5, 3),
+(16122019185534, 3, 3),
+(16122019185534, 4, 2),
+(16122019185534, 5, 3),
+(16122019185706, 3, 5),
+(16122019185706, 4, 3),
+(16122019185706, 5, 5);
 
 -- --------------------------------------------------------
 
@@ -123,7 +147,9 @@ CREATE TABLE `isian` (
 INSERT INTO `isian` (`id`, `nama`, `jenis`) VALUES
 (1, 'numeric', ' quantity'),
 (11, 'Jenis Kayu', 'quality'),
-(13, 'Merk Gitar', 'quantity');
+(14, 'Pick Up', 'quality'),
+(15, 'Bridge', 'quality'),
+(16, 'Switch Pickup', 'quality');
 
 -- --------------------------------------------------------
 
@@ -143,16 +169,21 @@ CREATE TABLE `nilai_isian` (
 --
 
 INSERT INTO `nilai_isian` (`id`, `parameter`, `nilai`, `id_isian`) VALUES
-(34, 'Kayu Mahogani', 5, 11),
+(34, 'Kayu Mahogani', 2, 11),
 (35, 'Kayu Rosewood', 4, 11),
-(36, 'Kayu Maple', 3, 11),
-(37, 'Kayu Koa', 2, 11),
-(38, 'Selain itu', 1, 11),
-(39, 'Gibson', 5, 13),
-(40, 'Fender', 4, 13),
-(41, 'ibanez', 3, 13),
-(42, 'Taylor', 2, 13),
-(43, 'Selain itu', 1, 13);
+(36, 'Kayu Maple', 5, 11),
+(37, 'Kayu Ebony', 3, 11),
+(38, 'Kayu Kenari', 1, 11),
+(44, 'Up Down Tremolo Bridge', 5, 15),
+(45, 'Down Tremolo Bridge ', 3, 15),
+(46, 'Fixed Bridge', 1, 15),
+(47, 'Double Coil', 5, 14),
+(48, 'Single Coil', 4, 14),
+(49, 'Humbucker Pasif Coil', 3, 14),
+(50, 'SIngle Pasif Coil', 2, 14),
+(51, '5 Jalur Suara', 5, 16),
+(52, '3 Jalur Suara', 3, 16),
+(53, '2 Jalur Suara', 1, 16);
 
 -- --------------------------------------------------------
 
@@ -170,8 +201,11 @@ CREATE TABLE `pencocokan` (
 --
 
 INSERT INTO `pencocokan` (`id`, `id_alternative`) VALUES
-(2122019153203, 20191202135025),
-(2122019145108, 20191202145108);
+(16122019185133, 20191202135025),
+(20122019221047, 20191202145108),
+(16122019185754, 20191216185455),
+(16122019185534, 20191216185534),
+(16122019185706, 20191216185706);
 
 -- --------------------------------------------------------
 
@@ -276,31 +310,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `alternative`
 --
 ALTER TABLE `alternative`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20191202151721;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20191216185707;
 
 --
 -- AUTO_INCREMENT for table `criteria`
 --
 ALTER TABLE `criteria`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `isian`
 --
 ALTER TABLE `isian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `nilai_isian`
 --
 ALTER TABLE `nilai_isian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `pencocokan`
 --
 ALTER TABLE `pencocokan`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16112019142241;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20122019221048;
 
 --
 -- AUTO_INCREMENT for table `perhitungan`

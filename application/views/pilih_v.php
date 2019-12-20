@@ -193,7 +193,7 @@
             "paging": true,
             "search": true,
             "sort": true,
-            "order": [[2, "desc"]]
+            "order": [[1, "desc"]]
         });
     })
 </script>

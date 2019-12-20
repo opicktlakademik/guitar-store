@@ -76,7 +76,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <nav class="main-header navbar navbar-expand-md navbar-dark navbar-dark">
             <div class="container">
                 <a href="<?php echo site_url('dss') ?>" class="navbar-brand">
-                    <span class="brand-text font-weight-light"><b> Guitar Store </b> <small style="font-size: 9px">Client Decision Support System</small></span>
+                    <span class="brand-text font-weight-light"><b> <?php echo $this->config->item("site") ?> </b> <small style="font-size: 9px">Client Decision Support System</small></span>
 
                 </a>
 
