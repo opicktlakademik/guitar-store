@@ -24,7 +24,7 @@
                                 <td><?php echo $value->bobot; ?></td>
                             </tr>
                         <?php $i++;
-                                endforeach; ?>
+                        endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -164,7 +164,7 @@
                             <th>Nilai</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="body-rank">
                         <?php foreach ($preferensi as $key => $value) : ?>
                             <tr>
                                 <?php for ($i = 0; $i < sizeof($value); $i++) : ?>
@@ -174,6 +174,16 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title"><b>Kesimpulan</b></h3>
+            </div>
+            <div class="card-body" id="kesimpulan">
+
             </div>
         </div>
     </div>
@@ -193,7 +203,26 @@
             "paging": true,
             "search": true,
             "sort": true,
-            "order": [[1, "desc"]]
+            "order": [
+                [1, "desc"]
+            ]
         });
+        let ranked = [];
+        let q;
+        $('#body-rank').each((a, b) => {
+            q = ($('tr', b))
+        });
+        q.map((val, i) => {
+            let d = {
+                'alt': $(i.children)[0].textContent,
+                'nilai': $(i.children)[1].textContent
+            };
+            ranked[val] = d;
+        })
+        let html = `<p>Dari hasil perhitungan sistem pendukung keputusan dengan metode SAW, maka dapat ditarik kesimpulan bahwa urutan nilai tertingginya adalah sebagai berikut:</p>`;
+        ranked.map((val,i) => {
+            html += `<b>#${i+1}</b> ${val.alt} nilai = ${val.nilai}<br>`;
+        });
+        $('#kesimpulan').html(html);
     })
 </script>
